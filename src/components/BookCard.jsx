@@ -1,15 +1,19 @@
-import { Link } from 'react-router-dom';
 
 const BookCard = ({ book }) => {
-    const { id, title, authors, formats } = book;
+    const { id, title, authors, formats, subjects } = book;
+
     const coverImage = formats['image/jpeg'];
+    const description = subjects[0]
+    const author = authors[0];
+    // console.log(author.name);
 
     return (
-        <div className="book-card">
-            <img src={coverImage} alt={title} className="book-cover" />
+        <div className="card">
+            <img src={coverImage} alt={title} />
             <h2>{title}</h2>
-            <p>Author: {authors.map(author => author.name).join(', ')}</p>
-            <Link to={`/book/${id}`} className="details-link">View Details</Link>
+            <p>{authors?.author?.name}</p>
+            <p>{description}</p>
+            <button>Read More</button>
         </div>
     );
 };

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import BookCard from '../components/BookCard';
 import Pagination from '../components/Pagination';
+import SearchBar from '../components/SearchBar';
 import { fetchBooks } from '../utils';
 
 const Home = () => {
@@ -29,23 +30,29 @@ const Home = () => {
 
     return (
         <div className="home">
-            <input
+            {/* <input
                 type="text"
                 placeholder="Search by title"
                 value={searchQuery}
                 onChange={handleSearch}
                 className="search-bar"
-            />
+            /> */}
+
+            <SearchBar
+                value={searchQuery}
+                handleSearch={handleSearch} />
+
+            <div className="grid-container">
+                {filteredBooks.slice((currentPage - 1) * 10, currentPage * 10).map(book => (
+                    <BookCard key={book.id} book={book} />
+                ))}
+            </div>
+
             <Pagination
                 currentPage={currentPage}
                 totalBooks={filteredBooks.length}
                 onPageChange={handlePageChange}
             />
-            <div className="book-list">
-                {filteredBooks.slice((currentPage - 1) * 10, currentPage * 10).map(book => (
-                    <BookCard key={book.id} book={book} />
-                ))}
-            </div>
         </div>
     );
 };
