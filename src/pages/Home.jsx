@@ -28,23 +28,43 @@ const Home = () => {
 
     const handlePageChange = (page) => setCurrentPage(page);
 
+    const [wishlist, setWishlist] = useState([]);
+
+    // Load wishlist from localStorage when the app mounts
+    useEffect(() => {
+        const storedWishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        setWishlist(storedWishlist);
+    }, []);
+
+    // Save the wishlist to localStorage whenever it changes
+    useEffect(() => {
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    }, [wishlist]);
+
+    // Toggle book in wishlist
+    const toggleWishlist = (book) => {
+        if (wishlist.find((item) => item.id === book.id)) {
+            setWishlist(wishlist.filter((item) => item.id !== book.id)); // Remove from wishlist
+        } else {
+            setWishlist([...wishlist, book]); // Add to wishlist
+        }
+    };
+
+
     return (
         <div className="home">
-            {/* <input
-                type="text"
-                placeholder="Search by title"
-                value={searchQuery}
-                onChange={handleSearch}
-                className="search-bar"
-            /> */}
-
             <SearchBar
                 value={searchQuery}
                 handleSearch={handleSearch} />
 
             <div className="grid-container">
                 {filteredBooks.slice((currentPage - 1) * 10, currentPage * 10).map(book => (
-                    <BookCard key={book.id} book={book} />
+                    <BookCard
+                        key={book.id}
+                        book={book}
+                        isWishlisted={wishlist.some((item) => item.id === book.id)}
+                        onToggleWishlist={() => toggleWishlist(book)}
+                    />
                 ))}
             </div>
 

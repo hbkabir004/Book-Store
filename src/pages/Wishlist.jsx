@@ -15,7 +15,7 @@ const Wishlist = () => {
             {wishlist.length === 0 ? (
                 <p>No books in wishlist.</p>
             ) : (
-                wishlist.map(book => <BookCard key={book.id} book={book} />)
+                wishlist.map(book => <div className='my-wishlist-page'><BookCard key={book.id} book={book} /></div>)
             )}
         </div>
     );
