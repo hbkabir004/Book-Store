@@ -3,7 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Spinner from './components/Spinner';
 import BookDetails from './pages/BookDetails';
-import Home from './pages/Home';
+import HomePage from './pages/HomePage';
 import Wishlist from './pages/Wishlist';
 import './styles/styles.css';
 
@@ -38,7 +38,7 @@ const App = () => {
         </div>)} {/* Conditionally show spinner */}
       {!loading && ( // Render Routes only after loading is complete
         <Routes>
-          <Route path="/" element={<Home data={data} />} />
+          <Route path="/" element={<HomePage data={data} />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/book/:id" element={<BookDetails />} />
         </Routes>

@@ -1,20 +1,25 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BookCard from '../components/BookCard';
+import DropdownFilter from '../components/DropdownFilter';
 import Pagination from '../components/Pagination';
 import SearchBar from '../components/SearchBar';
 import { fetchBooks } from '../utils';
 
-const Home = () => {
+const HomePage = () => {
     const [books, setBooks] = useState([]);
     const [filteredBooks, setFilteredBooks] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+    const [wishlist, setWishlist] = useState([]);
+    const [selectedGenre, setSelectedGenre] = useState('');
 
     useEffect(() => {
-        fetchBooks().then(data => {
+        const loadBooks = async () => {
+            const data = await fetchBooks();
             setBooks(data.results);
             setFilteredBooks(data.results);
-        });
+        };
+        loadBooks();
     }, []);
 
     const handleSearch = (e) => {
@@ -28,7 +33,22 @@ const Home = () => {
 
     const handlePageChange = (page) => setCurrentPage(page);
 
-    const [wishlist, setWishlist] = useState([]);
+    const handleFilterChange = (genre) => {
+        setSelectedGenre(genre);
+        filterBooks(searchQuery, genre);
+        setCurrentPage(1);
+    };
+
+    const filterBooks = (query, genre) => {
+        const filtered = books.filter((book) => {
+            const matchesGenre = genre ? book.subjects.includes(genre) : true;
+            const matchesSearch = book.title.toLowerCase().includes(query.toLowerCase());
+            return matchesGenre && matchesSearch;
+        });
+        setFilteredBooks(filtered);
+    };
+
+    const genres = [...new Set(books.flatMap((book) => book.subjects))];
 
     // Load wishlist from localStorage when the app mounts
     useEffect(() => {
@@ -50,12 +70,14 @@ const Home = () => {
         }
     };
 
-
     return (
         <div className="home">
-            <SearchBar
-                value={searchQuery}
-                handleSearch={handleSearch} />
+            <div className='sorting-searching'>
+                <SearchBar
+                    value={searchQuery}
+                    handleSearch={handleSearch} />
+                <DropdownFilter genres={genres} onFilterChange={handleFilterChange} />
+            </div>
 
             <div className="grid-container">
                 {filteredBooks.slice((currentPage - 1) * 10, currentPage * 10).map(book => (
@@ -67,14 +89,13 @@ const Home = () => {
                     />
                 ))}
             </div>
-
             <Pagination
                 currentPage={currentPage}
-                totalBooks={filteredBooks.length}
+                totalBooks={books.length}
                 onPageChange={handlePageChange}
             />
         </div>
     );
 };
 
-export default Home;
+export default HomePage;

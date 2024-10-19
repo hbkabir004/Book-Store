@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -8,16 +8,14 @@ const Navbar = () => {
 
     return (
         <header className="navbar">
-            <div className="logo">MyWebsite</div>
+            <Link to="/" className="logo">Aungstrome BookShop</Link>
             <button className="menu-toggle" onClick={toggleMenu}>
                 ☰
             </button>
             <nav className={`nav-links ${isOpen ? 'open' : ''}`}>
                 <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/wishlist">Wish List</Link></li>
-                    <li><Link to="#">Services</Link></li>
-                    <li><Link to="#">Contact</Link></li>
+                    <li><NavLink to="/">Home</NavLink></li>
+                    <li><NavLink to="/wishlist">Wish List</NavLink></li>
                 </ul>
             </nav>
         </header>

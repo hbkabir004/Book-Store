@@ -10,7 +10,7 @@ const SearchBar = ({ value, handleSearch }) => {
 
 
     return (
-        <div style={{ margin: "0 auto", marginTop: "50px", border: "1px solid blue" }} className={`search ${isFocused ? 'active' : ''}`}>
+        <div style={{ border: "1px solid blue" }} className={`search ${isFocused ? 'active' : ''}`}>
             <input
                 type="text"
                 placeholder="Search..."

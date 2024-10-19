@@ -7,11 +7,11 @@ const BookCard = ({ book, isWishlisted, onToggleWishlist }) => {
     const author = authors[0];
 
     return (
-        <div className="card">
+        <div className="card wishlist-card">
             <img src={coverImage} alt={title} />
             <h2>{title}</h2>
             <div style={{ textAlign: "left" }}>
-                <p><b>Author Name: </b>{author.name}</p>
+                <p><b>Author Name: </b>{author?.name}</p>
                 <p><b>Genre: </b>{genre}</p>
                 <p><b>Book ID: </b>{id}</p>
             </div>
