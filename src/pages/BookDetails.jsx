@@ -23,6 +23,7 @@ const BookDetails = () => {
             <p>Authors: {book.authors.map(author => author.name).join(', ')}</p>
             <p>ID: {book.id}</p>
             <p><strong>Find the Book on {book.bookshelves[0]}</strong></p>
+            <p><strong>Downloaded: {book.download_count}</strong> times</p>
             <small>&copy; {(book.copyright) ? 'Not Found' : 'Registered'} </small>
 
         </div>

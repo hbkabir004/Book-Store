@@ -2,7 +2,9 @@
 import React from 'react';
 
 const Pagination = ({ currentPage, totalBooks, onPageChange }) => {
-    const totalPages = Math.ceil(totalBooks / 10);
+    const totalPages = Math.ceil(totalBooks / 8);
+    console.log("onPageChange", onPageChange);
+
 
     const handlePageClick = (page) => {
         if (page >= 1 && page <= totalPages) onPageChange(page);

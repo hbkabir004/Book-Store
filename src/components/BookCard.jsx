@@ -16,7 +16,7 @@ const BookCard = ({ book, isWishlisted, onToggleWishlist }) => {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
         >
-            <div className="card wishlist-card">
+            <div style={{ height: '500px' }} className="card wishlist-card">
                 <img src={coverImage} alt={title} />
                 <h2>{title}</h2>
                 <div style={{ textAlign: "left" }}>
