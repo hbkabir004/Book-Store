@@ -229,11 +229,13 @@ margin: 10px 0;
   cursor: pointer;
 }
 
+/* .sorting-searching container for larger screens */
 .sorting-searching {
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 20px 0;
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
 }
 
 /* Pagination Styles */
@@ -331,6 +333,24 @@ margin: 10px 0;
   }
 }
 
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .sorting-searching {
+    justify-content: space-between;
+    padding: 15px;
+  }
+
+  .search {
+    width: 200px; /* Reduce width on smaller screens */
+  }
+  
+  .dropdown-filter {
+    margin-top: 10px;
+    width: 180px; /* Adjust dropdown width */
+  }
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .nav-links {
@@ -366,9 +386,20 @@ margin: 10px 0;
   }
 
   .sorting-searching {
-    display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    padding: 10px 0;
+  }
+
+  .search {
+    width: 100%; /* Full width on mobile */
+    max-width: 300px; /* Ensure a max width */
+    margin-bottom: 10px;
+  }
+
+  .dropdown-filter select {
+    width: 100%;
+    max-width: 300px;
   }
 }
