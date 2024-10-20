@@ -14,8 +14,18 @@ const Navbar = () => {
             </button>
             <nav className={`nav-links ${isOpen ? 'open' : ''}`}>
                 <ul>
-                    <li><NavLink to="/">Home</NavLink></li>
-                    <li><NavLink to="/wishlist">Wish List</NavLink></li>
+                    <li><NavLink style={({ isActive }) => {
+                        return {
+                            fontWeight: isActive ? "bold" : "",
+                            color: isActive ? "#ffca56" : "",
+                        };
+                    }} to="/" >Home</NavLink></li>
+                    <li><NavLink style={({ isActive }) => {
+                        return {
+                            fontWeight: isActive ? "bold" : "",
+                            color: isActive ? "#ffca56" : "",
+                        };
+                    }} to="/wishlist" >Wish List</NavLink></li>
                 </ul>
             </nav>
         </header>

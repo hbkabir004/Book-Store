@@ -193,11 +193,12 @@ margin: 10px 0;
   position: sticky;
   top: 0;
   width: 100%;
-  background-color: #333;
-  padding: 10px 0px;
+  background-color: #535353;
+  padding: 20px 0px;
   z-index: 1000; /* Ensure it stays on top */
   display: flex;
   justify-content: space-around;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -214,9 +215,9 @@ margin: 10px 0;
 
 .nav-links a {
   text-decoration: none;
-  color: white;
+  color: antiquewhite;
   margin: 0 10px;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 
 .menu-toggle {
