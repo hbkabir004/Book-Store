@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import BookCard from '../components/BookCard';
+import { Link } from 'react-router-dom';
+import WishListCard from '../components/WishListCard';
 
 const Wishlist = () => {
     const [wishlist, setWishlist] = useState([]);
@@ -13,9 +14,12 @@ const Wishlist = () => {
         <div className="wishlist">
             <h1>My Wishlist</h1>
             {wishlist.length === 0 ? (
-                <p>No books in wishlist.</p>
+                <div className='empty-wishlist'>
+                    <img src="/empty-wishlist.jpg" alt="no-books" />
+                    <Link to="/">Go Back to HomaPage</Link>
+                </div>
             ) : (
-                wishlist.map(book => <div className='my-wishlist-page'><BookCard key={book.id} book={book} /></div>)
+                wishlist.map(book => <div className='my-wishlist-page'><WishListCard key={book.id} book={book} /></div>)
             )}
         </div>
     );

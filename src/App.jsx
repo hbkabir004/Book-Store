@@ -38,7 +38,7 @@ const App = () => {
         </div>)} {/* Conditionally show spinner */}
       {!loading && ( // Render Routes only after loading is complete
         <Routes>
-          <Route path="/" element={<HomePage data={data} />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/book/:id" element={<BookDetails />} />
         </Routes>

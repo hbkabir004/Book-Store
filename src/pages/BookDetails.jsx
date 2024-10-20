@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Spinner from '../components/Spinner';
 import { fetchBooks } from '../utils';
 
 const BookDetails = () => {
@@ -13,7 +14,7 @@ const BookDetails = () => {
         });
     }, [id]);
 
-    if (!book) return <p>Loading...</p>;
+    if (!book) return <div className='book-details-spinner'><Spinner /></div>;
 
     return (
         <div className="book-details">
@@ -21,6 +22,9 @@ const BookDetails = () => {
             <h1>{book.title}</h1>
             <p>Authors: {book.authors.map(author => author.name).join(', ')}</p>
             <p>ID: {book.id}</p>
+            <p><strong>Find the Book on {book.bookshelves[0]}</strong></p>
+            <small>&copy; {(book.copyright) ? 'Not Found' : 'Registered'} </small>
+
         </div>
     );
 };
